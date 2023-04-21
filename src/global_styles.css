@@ -1,0 +1,18 @@
+/* Add application styles & imports to this file! */
+table,
+th,
+td {
+  border: 1px solid;
+}
+
+td {
+  padding: 4px;
+}
+
+.valid {
+  color: green;
+}
+
+.invalid {
+  color: red;
+}

@@ -1,0 +1,43 @@
+<ng-container *ngIf="vm$ | async as vm">
+  <h1>Account Prescriptions</h1>
+  <div *ngFor="let patient of vm.patients">
+    <h2>{{ patient.firstName }} {{ patient.lastName }}</h2>
+    <div *ngIf="patient.prescriptions.length === 0">No prescriptions</div>
+    <div *ngIf="patient.prescriptions.length !== 0">
+      <table>
+        <tr>
+          <th>Valid</th>
+          <th>Brand</th>
+          <th>Eye</th>
+          <th>Power</th>
+          <th>Base Curve</th>
+          <th>Doctor</th>
+          <th>Expiration Date</th>
+        </tr>
+        <tr *ngFor="let prescription of patient.prescriptions">
+          <td
+            [ngClass]="{
+              valid: prescription.isValid,
+              invalid: !prescription.isValid
+            }"
+          >
+            {{ prescription.isValid ? 'Yes' : 'No' }}
+          </td>
+          <td>{{ prescription.brand }}</td>
+          <td>{{ prescription.eye }}</td>
+          <td>{{ prescription.power }}</td>
+          <td>{{ prescription.baseCurve }}</td>
+          <td>{{ prescription.doctor }}</td>
+          <td>{{ prescription.expirationDate | date: 'MM/dd/yyyy' }}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <br />
+  <br />
+  <br />
+  <div>
+    * Prescriptions are considered valid if their expiration date is in the
+    future.
+  </div>
+</ng-container>
